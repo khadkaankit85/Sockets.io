@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Application</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Messenger</h1>
+    <button id="toggle-connection">Disconnect</button>
+
+    <section id="chat-of-the-user"></section>
+
+    <form id="send-message">
+        <input type="text" id="message-input-field">
+        <button type="submit">Send</button>
+    </form>
+
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script src="script.js"></script>
+
+</html>
