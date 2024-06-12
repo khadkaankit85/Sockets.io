@@ -1,7 +1,6 @@
 const express = require("express")
 const { createServer } = require("http")
 const path = require("path")
-const { emit } = require("process")
 const { Server } = require("socket.io")
 
 
@@ -12,17 +11,20 @@ const io = new Server(server)
 
 // to send stylesheets and js file
 app.use(express.static(path.join(__dirname, "Public")))
-
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "Pages", "home", "index.html"),)
 })
 
 io.on('connection', (socket) => {
-    io.emit("chat message", "A user joined", `${socket.client}`)
+    io.emit("chat message", "A user joined", `${socket.id}`)
 
     socket.on("chat message", (message) => {
         io.emit("chat message", message)
 
+    })
+    socket.on("private message", (userid, message) => {
+        console.log("msg sent to the user with userid ", userid)
+        io.to(userid).emit("chat message", message)
     })
 
     socket.on('disconnect', () => {
@@ -31,6 +33,8 @@ io.on('connection', (socket) => {
     })
 
 })
+
+
 //lets create the first namespace
 const firstNSP = io.of("/first-namespace")
 

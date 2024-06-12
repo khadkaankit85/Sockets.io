@@ -9,6 +9,11 @@ const inputFieldForRoom = document.getElementById("message-in-the-first-room")
 const chat = document.getElementById("chat-of-the-user")
 const chatInFirstRoom = document.getElementById("chat-in-the-first-room")
 
+const sendPrivateMessageForm = document.getElementById("send-private-message")
+const getPrivateMessage = document.getElementById("your-private-message")
+const destinationSocketIdInput = document.getElementById("get-user-id")
+
+
 toggleConnection.addEventListener('click', (e) => {
     if (socket.connected) {
         e.target.innerText = "Connect"
@@ -36,6 +41,14 @@ sendMessageInTheRoom.addEventListener('submit', (e) => {
     console.log("sending from first nsp::::", message)
     firstNSP.emit("chat message in the room", message)
     inputFieldForRoom.value = ''
+
+})
+
+// to send private message to the server
+sendPrivateMessageForm.addEventListener("submit", (e) => {
+    e.preventDefault()
+    let message = getPrivateMessage.value
+    socket.emit("private message", destinationSocketIdInput.value, message)
 
 })
 

@@ -4,8 +4,14 @@ body {
 }
 
 #for-the-first-namespace,
-#chat-of-the-user {
+#chat-of-the-user,
+#for-private-message {
     height: 200px;
     border: 1px solid black;
     margin: 10px 2px;
+}
+
+#send-private-message>input {
+    display: block;
+    margin: 7px 2px;
 }
