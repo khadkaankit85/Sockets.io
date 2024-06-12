@@ -3,7 +3,9 @@ const firstNSP = io("/first-namespace")
 
 const toggleConnection = document.getElementById("toggle-connection")
 const sendMessage = document.getElementById("send-message")
+const sendMessageInTheRoom = document.getElementById("send-message-in-first-room")
 const inputField = document.getElementById("message-input-field")
+const inputFieldForRoom = document.getElementById("message-in-the-first-room")
 const chat = document.getElementById("chat-of-the-user")
 const chatInFirstRoom = document.getElementById("chat-in-the-first-room")
 
@@ -27,6 +29,16 @@ sendMessage.addEventListener('submit', (e) => {
 
 })
 
+// to send message to the server
+sendMessageInTheRoom.addEventListener('submit', (e) => {
+    e.preventDefault()
+    let message = inputFieldForRoom.value
+    console.log("sending from first nsp::::", message)
+    firstNSP.emit("chat message in the room", message)
+    inputFieldForRoom.value = ''
+
+})
+
 // to handle received message
 socket.on("chat message", (msg) => {
     const message = document.createElement("li")
@@ -34,8 +46,9 @@ socket.on("chat message", (msg) => {
     chat.appendChild(message)
 })
 
-// to handle events in this namespace
-firstNSP.on("chat message", (msg) => {
+// to handle  received events in this namespace
+firstNSP.on("chat message in the room", (msg) => {
+    console.log("receiving msg in first namespace")
     const message = document.createElement("li")
     message.textContent = msg
     chatInFirstRoom.appendChild(message)
