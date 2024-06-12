@@ -12,12 +12,23 @@
     <h1>Messenger</h1>
     <button id="toggle-connection">Disconnect</button>
 
-    <section id="chat-of-the-user"></section>
+    <!-- section for public chat -->
+    <section id="chat-of-the-user">
+        <form id="send-message">
+            <input type="text" id="message-input-field">
+            <button type="submit">Send</button>
+        </form>
+    </section>
 
-    <form id="send-message">
-        <input type="text" id="message-input-field">
-        <button type="submit">Send</button>
-    </form>
+    <!-- section for namespace1 -->
+    <section id="for-the-first-namespace">
+        <div id="chat-in-the-first-room">
+            <form id="send-message-in-first-room">
+                <input type="text" id="message-in-the-first-room">
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </section>
 
 </body>
 <script src="/socket.io/socket.io.js"></script>

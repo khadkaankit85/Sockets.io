@@ -1,9 +1,11 @@
 const socket = io()
+const firstNSP = io("/first-namespace")
 
 const toggleConnection = document.getElementById("toggle-connection")
 const sendMessage = document.getElementById("send-message")
 const inputField = document.getElementById("message-input-field")
 const chat = document.getElementById("chat-of-the-user")
+const chatInFirstRoom = document.getElementById("chat-in-the-first-room")
 
 toggleConnection.addEventListener('click', (e) => {
     if (socket.connected) {
@@ -30,4 +32,11 @@ socket.on("chat message", (msg) => {
     const message = document.createElement("li")
     message.textContent = msg
     chat.appendChild(message)
+})
+
+// to handle events in this namespace
+firstNSP.on("chat message", (msg) => {
+    const message = document.createElement("li")
+    message.textContent = msg
+    chatInFirstRoom.appendChild(message)
 })

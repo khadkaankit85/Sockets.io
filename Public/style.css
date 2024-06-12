@@ -2,3 +2,10 @@ body {
     padding: 0;
     margin: 0
 }
+
+#for-the-first-namespace,
+#chat-of-the-user {
+    height: 200px;
+    border: 1px solid black;
+    margin: 10px 2px;
+}

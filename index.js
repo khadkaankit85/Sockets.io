@@ -31,6 +31,14 @@ io.on('connection', (socket) => {
     })
 
 })
+//lets create the first namespace
+const firstNSP = io.of("/first-namespace")
+
+firstNSP.on("connection", (socket) => {
+    console.log("connected to the first namespace")
+    firstNSP.emit("chat message", "message only to the first namespace ok")
+
+})
 
 
 
